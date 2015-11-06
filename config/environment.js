@@ -4,8 +4,16 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'chatfast',
     environment: environment,
+    contentSecurityPolicy: {
+      'connect-src': "'self' https://*.firebase.com https://*.firebaseio.com wss://*.firebaseio.com" ,
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://ajax.googleapis.com/ https://*.firebase.com https://*.firebaseio.com  wss://*.firebaseio.com " ,
+      'default-src': "'self' https://*.firebase.com https://*.firebaseio.com  wss://*.firebaseio.com",
+      'font-src': "'self' data: http://fonts.gstatic.com/ http://fonts.googleapis.com/",
+      'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com/"
+    },
+    firebase: 'https://chatfast.firebaseio.com/',
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

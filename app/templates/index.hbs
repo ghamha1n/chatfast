@@ -1,0 +1,27 @@
+<div class="info">
+  <div class="info-avatar"></div>
+  <h3 class="info-name">
+    {{#if editNameValue}}
+      {{input value=model.name type='text' class="name-input"}}
+    {{else}}
+      {{model.name}}
+    {{/if}}
+  </h3>
+  {{#if editNameValue}}
+    <button class="w-button info-button" {{action 'saveName'}}>Save</button>
+  {{else}}
+    <button class="w-button info-button" {{action 'editName'}}>Edit</button>
+    {{/if}}
+</div>
+
+{{#each model.chats as |chat|}}
+  {{#if chat.isSaving}}
+  {{else}}
+    {{#link-to 'chat' chat.id class="w-clearfix w-inline-block one-chat"}}
+      <div class="chat-icon"></div>
+      <h4 class="chat-name">{{chat.name}}</h4>
+      <div class="chat-number-user">{{chat.users.length}} </div>
+    {{/link-to}}
+  {{/if}}
+{{/each}}
+<button class="w-button add-new-chat" {{action 'newChat'}}>+ New Conversation</button>

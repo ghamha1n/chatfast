@@ -1,0 +1,28 @@
+<div class="chat-body">
+  <h3 class="chat-body-title">{{#link-to 'index' }} {{model.name}} {{/link-to}}</h3>
+  <div class="chat-conv">
+
+    {{#each model.conversations as |chat|}}
+    <div class="{{if (eq chat.user.id userLoggedin) 'you'}} w-clearfix one-conv">
+      <div class="one-conv-user-icon"></div>
+      <div class="one-conv-text-username">{{#if (eq chat.user.id userLoggedin)}} You {{else}} {{chat.user.name}}{{/if}}</div>
+      <div class="one-conv-text">
+        <p class="one-conv-text-message">{{chat.message}} </p>
+      </div>
+      <div class="one-conv-time">Before 2 Hours</div>
+    </div>
+    {{/each}}
+
+  </div>
+  <div class="w-clearfix chat-body-form">
+    <form {{action 'create' on='submit'}}>
+      {{#if busy}}
+      <button class="w-button chat-body-form-button" disabled="disabled">...</button>
+
+      {{else}}
+        <button class="w-button chat-body-form-button" type="submit">Send</button>
+      {{/if}}
+      {{#textarea value=message  class="w-input chat-body-form-textarea"}}{{/textarea}}
+    </form>
+  </div>
+</div>
